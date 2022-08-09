@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { add, remove } from 'redux/store';
 import Form from './components/Form';
 import Contacts from 'components/Contacts';
 import Filter from 'components/Filter';
 import { nanoid } from 'nanoid';
 
-const App = () => {
+export const App = () => {
+  const dispatch = useDispatch();
+  const contactsItem = useSelector(state => state.items);
+  console.log(contactsItem);
   const [contacts, setContacts] = useState(() => {
     return JSON.parse(window.localStorage.getItem('contacts')) ?? [];
   });
@@ -62,8 +67,12 @@ const App = () => {
       <Filter filter={filter} onChange={onFilter} />
       <h2>Contacts</h2>
       <Contacts contacts={filteredContacts} deleteContact={onDeleteContact} />
+      <button type="button" onClick={() => dispatch(add(contacts))}>
+        TO STATE
+      </button>
+      <button type="button" onClick={() => dispatch(remove(contacts.id))}>
+        FILTER
+      </button>
     </div>
   );
 };
-
-export default App;

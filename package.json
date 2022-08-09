@@ -47,7 +47,8 @@
     "lint-staged": "^13.0.3",
     "nanoid": "^4.0.0",
     "prettier": "^2.7.1",
-    "prop-types": "^15.8.1"
+    "prop-types": "^15.8.1",
+    "redux-logger": "^3.0.6"
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix",
